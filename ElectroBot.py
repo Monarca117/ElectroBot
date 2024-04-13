@@ -1,4 +1,6 @@
 from config import *
+from img import *
+from Reporte import *
 import telebot
 from telebot import types
 from fuzzywuzzy import process
@@ -74,12 +76,18 @@ def handle_options(message):
 def handle_report_id(message):
     id_reporte = message.text.lower()
     if id_reporte == "r01":
-        print("Mandando reporte 1")
-        bot.send_chat_action(message.chat.id, "Upload_document")
+        print("Mandando reporte 1")#Aviso en consola de envío de reporte
+        bot.send_chat_action(message.chat.id, "Upload_document") #Aviso en chat de envío de reporte
+
+        reporte = open(ruta_reporte, "rb")
+        bot.send_document(message.chat.id, reporte)
     elif id_reporte == "r02":
-        print("Mandando reporte 2")
-        bot.send_message(message.chat.id, "Enviando reporte 2...")
-        bot.send_chat_action(message.chat.id, "Upload_document")
+        print("Mandando reporte 2") #Aviso en consola de envío de reporte
+        bot.send_chat_action(message.chat.id, "Upload_document")#Aviso en chat de envío de reporte
+
+        """Envio de reporte"""
+        reporte = open(ruta_reporte, "rb")
+        bot.send_document(message.chat.id, reporte)
     else:
         bot.send_message(message.chat.id, "ID de reporte no válido.")
 
