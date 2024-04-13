@@ -44,7 +44,7 @@ def handle_options(message):
 
     if opcion is None:
         bot.send_message(message.chat.id, "Opción no válida. Por favor, selecciona una opción de la lista.")
-        bot.send_message(message.chat.id, "Aqui tienes una lista de nuestros servicios: \nOpción 1. Consultar un reporte \nOpción 2. Consultar saldo y recibo \nOpción 3. Medios de pago \nOpción 4. \nSalir.")
+        bot.send_message(message.chat.id, "Aqui tienes una lista de nuestros servicios: \nOpción 1. Consultar un reporte \nOpción 2. Consultar saldo y recibo \nOpción 3. Medios de pago \nOpción 4. Infocmación. \nSalir.")
         return
 
     if opcion == "opción 1":
@@ -58,6 +58,9 @@ def handle_options(message):
         user =  message.from_user
         bot.send_message(message.chat.id, f"Usuario: {user.first_name} \nSaldo: 100")
         bot.send_chat_action(message.chat.id, "Upload_document")
+
+        recibo = open(ruta_recibo, "rb")
+        bot.send_photo(message.chat.id, recibo)
 
     elif opcion == "opción 3":
         print("Opción 3 elegida")
